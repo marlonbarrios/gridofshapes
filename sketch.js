@@ -56,7 +56,7 @@ let choices = [ //arrays of arrays: mixing data types!! cool stuff of JS
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  colorPicker = createColorPicker('black');
+  colorPicker = createColorPicker('white');
   colorPicker.position(20, 20 );   
   background(colorPicker.color());
   gui = new dat.GUI();
@@ -243,7 +243,7 @@ function mouseReleased() {
   function keyPressed() {
     // Save frame if letter 'p' is pressed
     if (keyCode === 80) {
-      save(`sketch.png`);
+      save(`sketch + .png`);
     }
   }
 
