@@ -1,11 +1,11 @@
 
 let gui;
-
+let colorPicker;
 let settings = {
   grid: 150,
   thickness: 1,
   transparency: 255,
-  backgroundColor: 255,
+ 
   lineColor: 0,
 
   
@@ -55,13 +55,15 @@ let choices = [ //arrays of arrays: mixing data types!! cool stuff of JS
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(settings.backgroundColor)
- 
+
+  colorPicker = createColorPicker('black');
+  colorPicker.position(20, 20 );   
+  background(colorPicker.color());
   gui = new dat.GUI();
  
   gui.add(settings, 'grid', 4, 500);
   gui.add(settings, 'thickness', 1, 40);
- gui.add(settings, 'backgroundColor', 0, 255);
+//  gui.add(settings, 'backgroundColor', 0, 255);
   gui.add(settings, 'lineColor', 0, 255);
   gui.add(settings, 'transparency', 0, 255); 
 }
@@ -74,11 +76,12 @@ function windowResized() {
 
 function draw() {
      // Set the background-color as
-    
+     background(colorPicker.color());
    
- 
-  background(settings.backgroundColor);
+
+  // background(settings.backgroundColor);
   stroke(settings.lineColor, settings.transparency);
+
   strokeWeight(settings.thickness);
 
   for (var x = 0; x < width; x += settings.grid) {
@@ -140,7 +143,7 @@ function halfBackSlash() {
 }
 
 function emptySquare() {
- 
+  fill(255, settings.transparency)
   rect(0, 0, settings.grid, settings.grid);
 }
 
@@ -155,7 +158,7 @@ function blackSquare() {
 }
 
 function emptyCircle() {
-  ellipseMode(CENTER);
+  fill(255, settings.transparency)
   ellipse(settings.grid / 2, settings.grid / 2, settings.grid, settings.grid);
 }
 
@@ -171,6 +174,7 @@ function blackCircle() {
 
 
 function emptyIsoTriangle() {
+  fill(255, settings.transparency)
   triangle(settings.grid / 2, 0, settings.grid, settings.grid, 0, settings.grid);
 }
 
@@ -186,6 +190,7 @@ function blackIsoTriangle() {
 }
 
 function emptyRectTriangleLeft() {
+  fill(255, settings.transparency)
   triangle(0, 0, 0, settings.grid, settings.grid, settings.grid);
 }
 
@@ -200,6 +205,7 @@ function blackRectTriangleLeft()  {
 }
 
 function emptyRectTriangleRight() {
+  fill(255, settings.transparency)
   triangle(settings.grid, 0, settings.grid, settings.grid, 0, settings.grid);
 }
 
@@ -214,6 +220,7 @@ function blackRectTriangleRight() {
 }
 
 function emptyIsoTriangleUpsideDown() {
+  fill(255, settings.transparency)
   triangle(settings.grid, 0, settings.grid, settings.grid, 0, settings.grid);
 }
 
@@ -227,13 +234,7 @@ function blackIsoTriangleUpsideDown() {
   triangle(0, 0, settings.grid, 0, settings.grid/2, settings.grid);
 }
 
-function blackbackground() {
-  background(0);
-}
 
-function whitebackground() {
-  background(255);
-}
 
 function mouseReleased() {
   draw();
